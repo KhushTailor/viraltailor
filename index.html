@@ -252,7 +252,7 @@
     </div>
   </div>
   <div>
-    <form name="contact" method="POST" data-netlify="true" class="contact-form">
+    <form id="contactForm" class="contact-form">
       <input type="hidden" name="form-name" value="contact" />
       <div class="form-row">
         <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Your name" required /></div>
@@ -271,7 +271,7 @@
         </select>
       </div>
       <div class="form-group"><label for="goal">Health Goal</label><textarea id="goal" name="goal" placeholder="Tell me about your health goals, any medical conditions, or specific concerns..."></textarea></div>
-      <button type="submit" class="form-submit">Send Message ✦</button>
+      <button type="button" class="form-submit" onclick="sendWhatsApp()">Send Message ✦</button>
     </form>
   </div>
 </section>
@@ -307,5 +307,24 @@
     document.getElementById('mainNav').style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
   };
 </script>
+
+<script>
+function sendWhatsApp(){
+  var name = document.getElementById('name').value;
+  var contact = document.getElementById('cinfo').value;
+  var service = document.getElementById('service').value;
+  var goal = document.getElementById('goal').value;
+
+  var message = "Hi Viral, I want a nutrition consultation.%0A%0A"
+              + "Name: " + encodeURIComponent(name) + "%0A"
+              + "Contact: " + encodeURIComponent(contact) + "%0A"
+              + "Service: " + encodeURIComponent(service) + "%0A"
+              + "Goal: " + encodeURIComponent(goal);
+
+  var url = "https://wa.me/919601949860?text=" + message;
+  window.open(url, "_blank");
+}
+</script>
+
 </body>
 </html>
